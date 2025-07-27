@@ -10,6 +10,9 @@
 > แสดงข้อมูลแบบกราฟและตาราง พร้อมจัดอันดับตามค่าใช้จ่าย
 
 ![ตัวอย่างหน้าจอ Dashboard](templates/template.jpeg)
+![ตัวอย่างหน้าจอ Dashboard](templates/template2.jpeg)
+
+!(templates/template2.jpeg)
 
 ---
 
