@@ -12,27 +12,26 @@
 ![ตัวอย่างหน้าจอ Dashboard](templates/template.jpeg)
 ![ตัวอย่างหน้าจอ Dashboard](templates/template2.jpeg)
 
-!(templates/template2.jpeg)
-
 ---
 
 ## ใน repo นี้จะมีการลองกรองข้อมูลทั้ง 2 แบบ ทั้งแบบ regex และ llm แต่แบบที่ใช้นำไปแสดง dashboard คือ จาก llm 
+
 ## โครงสร้างไฟล์
 
 | ไฟล์ / โฟลเดอร์ | หน้าที่ |
 |------------------|----------|
 | `app.py` | Flask app สำหรับแสดง Dashboard |
-| `scraping_typhoon.py` | ดึงข้อมูลจาก API + วิเคราะห์ข้อความด้วย Typhoon |
-| `scrap_regex.ipynb` | วิเคราะห์ข้อความด้วย regex-only |
-| `courses_data.csv` / `.xlsx` | Raw data หลัง scrape |
-| `cs_engineering_costs.csv` | ข้อมูลที่ใช้แสดงบน Dashboard |
-| `templates/` | HTML template (`dashboard.html`) |
-| `v2/` |  **โฟลเดอร์สำหรับทดลองกรองสาขาอื่น ๆ ในวิศวกรรม** (เช่น วิศวกรรมไฟฟ้า, โยธา ฯลฯ) ด้วย Typhoon โดยใช้ logic เดียวกับหลักสูตรคอมพิวเตอร์ |
-| `.env` | เก็บ `TYPHOON_API_KEY` (ไม่ควร push) |
+| `data/` | รวมไฟล์ `.csv` และ `.xlsx` ที่ clean แล้วด้วย regex และ Typhoon |
+| `scripts/` | รวม notebook และ python script สำหรับ scraping/cleaning |
+| `scraping_typhoon.py` | สคริปต์หลักสำหรับดึงข้อมูลจาก API และวิเคราะห์ข้อความด้วย Typhoon |
+| `scrap_regex.ipynb` | วิเคราะห์ข้อความด้วย regex-only (แบบไม่ใช้ LLM) |
+| `templates/` | HTML template (`dashboard.html`, template images ฯลฯ) |
+| `experimental/` | **โฟลเดอร์สำหรับทดลองกรองสาขาอื่น ๆ ในวิศวกรรม** เช่น วิศวกรรมไฟฟ้า, โยธา ฯลฯ ด้วย Typhoon (ใช้ logic เดียวกับคอมพิวเตอร์) |
+| `.env` | เก็บ `TYPHOON_API_KEY` (ไม่ push ขึ้น repo) |
 | `.env.example` | ตัวอย่างไฟล์ `.env` สำหรับตั้งค่า |
-| `.gitignore` | ไฟล์ที่ต้อง ignore เช่น `.env` |
-| `requirements.txt` | รายการ dependencies |
-| `README.md` | คู่มือการใช้งานโปรเจกต์นี้ |
+| `.gitignore` | รายการไฟล์ที่ไม่ต้อง track เช่น `.env`, `.DS_Store` |
+| `requirements.txt` | รายการ dependencies ที่ใช้ในโปรเจกต์ |
+| `README.md` | คู่มือใช้งานโปรเจกต์นี้ |
 
 ---
 
@@ -47,16 +46,19 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 
-cp .env.example .env
-# แล้วใส่ API Key ของคุณ:
-# TYPHOON_API_KEY=YOUR_TYPHOON_API_KEY
+
+# เปิด dashboard
+python app.py
+# เปิดใน browser: http://127.0.0.1:5000
+
 
 # ทดสอบดึงข้อมูลเบื้องต้นด้วย Regex-only
 jupyter notebook scrap_regex.ipynb
 
 # หรือวิเคราะห์ด้วย Typhoon AI
+cp .env.example .env
+# แล้วใส่ API Key ของคุณ:
+# TYPHOON_API_KEY=YOUR_TYPHOON_API_KEY
+
 python scraping_typhoon.py
 
-# จากนั้นเปิด dashboard
-python app.py
-# เปิดใน browser: http://127.0.0.1:5000
