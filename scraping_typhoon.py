@@ -91,7 +91,7 @@ if response.status_code == 200:
 
     # สร้างและบันทึก CSV
     df = pd.DataFrame(records)
-    df.to_csv("cs_engineering_costs.csv", index=False, encoding='utf-8-sig')
+    df.to_csv("data_clean_typhoon.csv", index=False, encoding='utf-8-sig')
     print(f"\nบันทึกไฟล์เรียบร้อย: cs_engineering_costs.csv")
     print(f"จำนวนหลักสูตรวิศวกรรมคอมพิวเตอร์ทั้งหมด: {count} หลักสูตร")
 

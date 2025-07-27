@@ -18,7 +18,7 @@ def extract_numeric_baht(text):
 
 # ==== โหลดและเตรียมข้อมูล ====
 def load_data():
-    df = pd.read_csv("cs_engineering_costs.csv")
+    df = pd.read_csv("data_clean_typhoon.csv")
 
     # คำนวณราคา
     df["ราคา (บาท)"] = df["ค่าใช้จ่าย (ต่อภาค)"].apply(extract_numeric_baht)
